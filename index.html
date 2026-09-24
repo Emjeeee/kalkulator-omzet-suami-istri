@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kalkulator Penggabungan Omzet Suami Istri — PP 20 Tahun 2026</title>
+<meta name="description" content="Cek apakah omzet gabungan suami, istri, dan perseroan perorangan masih di bawah Rp4,8 miliar. Aturan PP 20 Tahun 2026 mewajibkan omzet digabung. Gratis, tanpa daftar." />
+<link rel="canonical" href="https://emjeeee.github.io/kalkulator-omzet-suami-istri/" />
+<meta property="og:title" content="Kalkulator Penggabungan Omzet Suami Istri — PP 20/2026" />
+<meta property="og:description" content="Omzet suami dan istri kini dijumlahkan untuk menguji batas Rp4,8 miliar. Hitung posisi Anda di sini." />
+<meta property="og:type" content="website" />
+<style>
+  :root {
+    --bg: #f8fafc;
+    --surface: #ffffff;
+    --ink: #0f172a;
+    --muted: #64748b;
+    --line: #e2e8f0;
+    --accent: #0284c7;
+    --accent-ink: #ffffff;
+    --ok-bg: #ecfdf5; --ok-line: #6ee7b7; --ok-ink: #065f46;
+    --warn-bg: #fffbeb; --warn-line: #fcd34d; --warn-ink: #92400e;
+    --bad-bg: #fef2f2; --bad-line: #fca5a5; --bad-ink: #991b1b;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0b1220; --surface: #131c2e; --ink: #e8eef8; --muted: #93a3b8;
+      --line: #27354d; --accent: #38bdf8; --accent-ink: #06243a;
+      --ok-bg: #062e24; --ok-line: #12705a; --ok-ink: #6ee7b7;
+      --warn-bg: #3a2c08; --warn-line: #8a6a14; --warn-ink: #fcd34d;
+      --bad-bg: #3b1218; --bad-line: #8b2f36; --bad-ink: #fca5a5;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0b1220; --surface: #131c2e; --ink: #e8eef8; --muted: #93a3b8;
+    --line: #27354d; --accent: #38bdf8; --accent-ink: #06243a;
+    --ok-bg: #062e24; --ok-line: #12705a; --ok-ink: #6ee7b7;
+    --warn-bg: #3a2c08; --warn-line: #8a6a14; --warn-ink: #fcd34d;
+    --bad-bg: #3b1218; --bad-line: #8b2f36; --bad-ink: #fca5a5;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 32px 16px 80px; }
+
+  header h1 { font-size: 1.85rem; line-height: 1.25; margin: 0 0 12px; letter-spacing: -0.02em; }
+  header p.lede { color: var(--muted); font-size: 1.05rem; margin: 0 0 8px; }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 14px; padding: 20px; margin: 22px 0;
+  }
+  .card h2 { font-size: 1.1rem; margin: 0 0 4px; }
+  .card p.hint { color: var(--muted); font-size: .92rem; margin: 0 0 18px; }
+
+  label { display: block; font-weight: 600; margin: 16px 0 6px; font-size: .95rem; }
+  label small { display: block; font-weight: 400; color: var(--muted); font-size: .85rem; margin-top: 2px; }
+  .money { position: relative; }
+  .money span {
+    position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+    color: var(--muted); font-weight: 600; pointer-events: none;
+  }
+  input[type="text"] {
+    width: 100%; padding: 13px 14px 13px 44px; font-size: 1.05rem;
+    border: 1px solid var(--line); border-radius: 10px;
+    background: var(--bg); color: var(--ink); font-variant-numeric: tabular-nums;
+  }
+  input[type="text"]:focus-visible { outline: 3px solid var(--accent); outline-offset: 1px; }
+
+  fieldset { border: 0; padding: 0; margin: 20px 0 0; }
+  legend { font-weight: 600; font-size: .95rem; padding: 0; margin-bottom: 8px; }
+  .choice { display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; cursor: pointer; }
+  .choice input { margin-top: 5px; flex: none; cursor: pointer; }
+  .choice span small { display: block; color: var(--muted); font-size: .85rem; }
+
+  .result { border-radius: 14px; padding: 20px; margin: 22px 0; border: 1px solid; }
+  .result.ok   { background: var(--ok-bg);   border-color: var(--ok-line);   }
+  .result.warn { background: var(--warn-bg); border-color: var(--warn-line); }
+  .result.bad  { background: var(--bad-bg);  border-color: var(--bad-line);  }
+  .result h2 { margin: 0 0 6px; font-size: 1.25rem; }
+  .result.ok h2   { color: var(--ok-ink); }
+  .result.warn h2 { color: var(--warn-ink); }
+  .result.bad h2  { color: var(--bad-ink); }
+  .result .big { font-size: 1.9rem; font-weight: 700; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; margin: 10px 0 2px; }
+
+  table { width: 100%; border-collapse: collapse; margin-top: 14px; }
+  th, td { text-align: left; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: .95rem; }
+  td:last-child, th:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+  tr.total td { font-weight: 700; border-bottom: 0; padding-top: 12px; }
+
+  details { border: 1px solid var(--line); border-radius: 12px; padding: 0 16px; margin: 12px 0; background: var(--surface); }
+  details[open] { padding-bottom: 14px; }
+  summary { cursor: pointer; font-weight: 600; padding: 14px 0; }
+  summary::marker { color: var(--accent); }
+
+  .note { font-size: .9rem; color: var(--muted); }
+  a { color: var(--accent); }
+  footer { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line); font-size: .88rem; color: var(--muted); }
+  footer p { margin: 0 0 10px; }
+
+  .cta { background: var(--accent); color: var(--accent-ink); border-radius: 14px; padding: 20px; margin: 30px 0 0; }
+  .cta h2 { margin: 0 0 6px; font-size: 1.05rem; }
+  .cta p { margin: 0 0 12px; font-size: .95rem; opacity: .92; }
+  .cta a { color: var(--accent-ink); font-weight: 700; text-decoration: underline; }
+  .cta[hidden] { display: none; }
+
+  button.theme {
+    position: absolute; top: 16px; right: 16px;
+    background: var(--surface); color: var(--ink); border: 1px solid var(--line);
+    border-radius: 999px; padding: 8px 14px; font-size: .85rem; font-weight: 600; cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<button class="theme" id="theme" type="button">Tema gelap</button>
+<div class="wrap">
+
+<header>
+  <h1>Omzet suami dan istri sekarang dijumlahkan. Sudah cek posisi Anda?</h1>
+  <p class="lede">
+    PP 20 Tahun 2026 mewajibkan omzet suami, istri, dan seluruh perseroan perorangan
+    yang didirikan salah satunya <strong>digabung</strong> untuk menguji batas Rp4,8 miliar.
+    Banyak pasangan melewatinya tanpa sadar.
+  </p>
+  <p class="note">Gratis. Tidak perlu daftar. Angka yang Anda isi tidak dikirim ke mana pun — perhitungannya terjadi di perangkat Anda sendiri.</p>
+</header>
+
+<form class="card" id="form" autocomplete="off">
+  <h2>Isi omzet setahun (peredaran bruto)</h2>
+  <p class="hint">Kosongkan yang tidak ada. Omzet, bukan laba.</p>
+
+  <label for="suami">Omzet usaha suami
+    <small>Seluruh usaha pribadinya dalam satu tahun pajak</small>
+  </label>
+  <div class="money"><span>Rp</span><input type="text" id="suami" inputmode="numeric" placeholder="0" /></div>
+
+  <label for="istri">Omzet usaha istri
+    <small>Seluruh usaha pribadinya dalam satu tahun pajak</small>
+  </label>
+  <div class="money"><span>Rp</span><input type="text" id="istri" inputmode="numeric" placeholder="0" /></div>
+
+  <label for="pp">Omzet perseroan perorangan (PT Perorangan)
+    <small>Total seluruh PT Perorangan yang didirikan suami dan/atau istri. Kosongkan kalau tidak punya.</small>
+  </label>
+  <div class="money"><span>Rp</span><input type="text" id="pp" inputmode="numeric" placeholder="0" /></div>
+
+  <fieldset>
+    <legend>Apakah salah satu berprofesi sebagai pekerjaan bebas?</legend>
+    <label class="choice">
+      <input type="radio" name="bebas" value="tidak" checked />
+      <span>Tidak
+        <small>Usaha dagang, jasa umum, kuliner, produksi, dan sejenisnya</small>
+      </span>
+    </label>
+    <label class="choice">
+      <input type="radio" name="bebas" value="ya" />
+      <span>Ya, salah satu di antaranya
+        <small>Pengacara, akuntan, arsitek, dokter, konsultan, notaris, penilai, aktuaris, agen iklan, influencer, blogger, vlogger, seniman, olahragawan, pelatih, moderator, agen asuransi</small>
+      </span>
+    </label>
+  </fieldset>
+</form>
+
+<div id="hasil" aria-live="polite"></div>
+
+<div class="cta" id="cta" hidden>
+  <h2>Catatan omzet Anda tersebar di beberapa tempat?</h2>
+  <p>
+    Kalau angka di Excel, aplikasi kasir, dan WhatsApp tidak pernah cocok, angka gabungan
+    di atas ikut meleset. Saya bantu rapikan jadi satu file yang bisa Anda periksa sendiri.
+  </p>
+  <p id="cta-links"></p>
+</div>
+
+<h2 style="margin-top:36px;font-size:1.15rem;">Pertanyaan yang sering muncul</h2>
+
+<details>
+  <summary>Kenapa omzet suami dan istri harus digabung?</summary>
+  <p>Untuk mencegah satu usaha dipecah menjadi beberapa nama supaya tetap di bawah batas.
+  Direktorat Jenderal Pajak menyatakan: <em>"Penentuan batas omzet harus menggabungkan
+  peredaran bruto dari suami, istri, beserta seluruh perseroan perorangan yang didirikan
+  oleh suami dan/atau istri tersebut."</em></p>
+  <p class="note">Ini berlaku termasuk ketika pasangan memiliki pemisahan harta atau memilih
+  menjalankan kewajiban perpajakan secara terpisah.</p>
+</details>
+
+<details>
+  <summary>Tarif 0,5% itu sampai kapan?</summary>
+  <p>Tidak ada batas waktu lagi untuk Wajib Pajak Orang Pribadi. Sebelumnya dibatasi
+  maksimal 7 tahun; PP 20 Tahun 2026 menghapus batas itu. Judul pengumuman DJP sendiri:
+  <em>"Tarif PPh 0,5% bagi UMKM Orang Pribadi Berlaku Selamanya"</em>.</p>
+</details>
+
+<details>
+  <summary>Apa yang terjadi kalau omzet gabungan lewat Rp4,8 miliar?</summary>
+  <p>Tarif final 0,5% tidak lagi bisa dipakai. Penghasilan dihitung dengan tarif umum,
+  dan kewajiban pembukuan penuh berlaku — bukan lagi sekadar pencatatan omzet.</p>
+  <p class="note">Yang membuat ini mahal: batasnya bisa terlewat tanpa disadari, karena
+  masing-masing merasa usahanya sendiri masih kecil.</p>
+</details>
+
+<details>
+  <summary>Bagaimana perhitungan pajaknya?</summary>
+  <p>Untuk Wajib Pajak Orang Pribadi, omzet <strong>Rp500 juta pertama dalam satu tahun
+  pajak tidak dikenai PPh</strong> (Pasal 60 ayat (2) PP Nomor 55 Tahun 2022). Sisanya
+  dikenai 0,5% final. Fasilitas Rp500 juta ini melekat pada orang pribadi, bukan pada
+  perseroan perorangan.</p>
+</details>
+
+<details>
+  <summary>Saya dokter / konsultan / influencer. Apakah bisa pakai 0,5%?</summary>
+  <p>Tidak. Penghasilan dari pekerjaan bebas dikecualikan. DJP menyebut antara lain
+  pengacara, akuntan, arsitek, dokter, konsultan, notaris, penilai, aktuaris, agen iklan,
+  influencer, blogger, vlogger, seniman, olahragawan, pelatih, moderator, dan agen asuransi.</p>
+</details>
+
+<footer>
+  <p><strong>Ini alat bantu hitung, bukan nasihat pajak.</strong> Perhitungan di halaman ini
+  adalah perbandingan angka terhadap ambang yang tertulis di peraturan. Situasi pajak
+  seseorang bisa memiliki hal lain yang tidak ditanyakan di sini. Untuk keputusan yang
+  mengikat, tanyakan ke Kantor Pelayanan Pajak atau konsultan pajak.</p>
+
+  <p><strong>Sumber, semuanya dari Direktorat Jenderal Pajak:</strong><br />
+    <a href="https://www.pajak.go.id/en/node/119950" rel="nofollow">PP 20/2026: Tarif PPh 0,5% bagi UMKM Orang Pribadi Berlaku Selamanya</a><br />
+    <a href="https://www.pajak.go.id/en/node/119954" rel="nofollow">PP 20 Tahun 2026: Napas Baru Pajak UMKM, Antara Kemudahan dan Keadilan</a>
+  </p>
+
+  <p>Halaman ini tidak memasang cookie, tidak memakai analitik, dan tidak mengirim angka
+  Anda ke server mana pun. Terakhir diperiksa terhadap sumber di atas: 25 September 2026.</p>
+</footer>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var CEILING = 4800000000;   // Rp4,8 miliar
+  var EXEMPT  = 500000000;    // Rp500 juta, per orang pribadi
+  var RATE    = 0.005;
+
+  // Diisi setelah listing terbit. Kosong = blok ajakan disembunyikan, bukan
+  // tautan mati.
+  var LISTINGS = [];
+
+  var fmt = new Intl.NumberFormat("id-ID");
+  function rupiah(n) { return "Rp" + fmt.format(Math.round(n)); }
+
+  function digits(value) {
+    var only = String(value).replace(/\D/g, "");
+    return only === "" ? 0 : parseInt(only, 10);
+  }
+
+  var fields = ["suami", "istri", "pp"].map(function (id) { return document.getElementById(id); });
+
+  fields.forEach(function (el) {
+    el.addEventListener("input", function () {
+      var n = digits(el.value);
+      // Menulis ulang sambil mengetik supaya pemisah ribuan muncul, tetapi
+      // kosong tetap kosong — "0" yang muncul sendiri membuat orang ragu
+      // apakah dia sudah mengisi atau belum.
+      el.value = n === 0 && el.value.replace(/\D/g, "") === "" ? "" : fmt.format(n);
+      hitung();
+    });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('input[name="bebas"]'), function (el) {
+    el.addEventListener("change", hitung);
+  });
+
+  function pajakOrangPribadi(omzet) {
+    return Math.max(0, omzet - EXEMPT) * RATE;
+  }
+
+  function hitung() {
+    var suami = digits(fields[0].value);
+    var istri = digits(fields[1].value);
+    var pp    = digits(fields[2].value);
+    var total = suami + istri + pp;
+    var bebas = document.querySelector('input[name="bebas"]:checked').value === "ya";
+
+    var box = document.getElementById("hasil");
+    var cta = document.getElementById("cta");
+
+    if (total === 0) { box.innerHTML = ""; cta.hidden = true; return; }
+
+    var sisa = CEILING - total;
+    var lewat = total > CEILING;
+    var dekat = !lewat && sisa <= CEILING * 0.15;
+
+    var kelas = lewat ? "bad" : dekat ? "warn" : "ok";
+    var judul = lewat
+      ? "Omzet gabungan sudah melewati Rp4,8 miliar"
+      : dekat
+        ? "Mendekati batas — sisa ruang tinggal sedikit"
+        : "Masih di bawah batas Rp4,8 miliar";
+
+    var html = '<div class="result ' + kelas + '">';
+    html += "<h2>" + judul + "</h2>";
+    html += '<div class="big">' + rupiah(total) + "</div>";
+    html += '<p class="note">omzet gabungan setahun</p>';
+
+    html += "<table><tbody>";
+    if (suami) html += "<tr><td>Omzet suami</td><td>" + rupiah(suami) + "</td></tr>";
+    if (istri) html += "<tr><td>Omzet istri</td><td>" + rupiah(istri) + "</td></tr>";
+    if (pp)    html += "<tr><td>Perseroan perorangan</td><td>" + rupiah(pp) + "</td></tr>";
+    html += '<tr class="total"><td>' + (lewat ? "Kelebihan dari batas" : "Sisa ruang sampai Rp4,8 miliar") +
+            "</td><td>" + rupiah(Math.abs(sisa)) + "</td></tr>";
+    html += "</tbody></table>";
+    html += "</div>";
+
+    if (bebas) {
+      html += '<div class="result bad"><h2>Pekerjaan bebas tidak bisa memakai tarif 0,5%</h2>' +
+              "<p>Penghasilan dari pekerjaan bebas dikecualikan dari fasilitas ini, berapa pun omzetnya. " +
+              "Perhitungan pajak di bawah tidak berlaku untuk penghasilan tersebut.</p></div>";
+    }
+
+    if (lewat) {
+      html += '<div class="card"><h2>Artinya</h2>' +
+              "<p>Tarif final 0,5% tidak lagi dapat digunakan. Penghasilan dihitung dengan tarif umum, " +
+              "dan kewajiban pembukuan penuh berlaku.</p>" +
+              '<p class="note">Kalau angka omzet yang Anda isi di atas berasal dari catatan yang tersebar ' +
+              "di beberapa tempat, ada baiknya dipastikan dulu sebelum mengambil kesimpulan — " +
+              "selisih pencatatan bisa membuat posisi Anda terlihat berbeda dari sebenarnya.</p></div>";
+    } else if (!bebas) {
+      var pSuami = pajakOrangPribadi(suami);
+      var pIstri = pajakOrangPribadi(istri);
+      var pPP = pp * RATE;   // perseroan perorangan tidak mendapat fasilitas Rp500 juta
+      html += '<div class="card"><h2>Perkiraan PPh final setahun</h2>' +
+              '<p class="hint">Rp500 juta pertama tiap orang pribadi tidak dikenai PPh. ' +
+              "Perseroan perorangan tidak mendapat fasilitas itu.</p><table><tbody>";
+      if (suami) html += "<tr><td>Suami" + (suami > EXEMPT ? " — dari " + rupiah(suami - EXEMPT) : " — di bawah Rp500 juta") +
+                         "</td><td>" + rupiah(pSuami) + "</td></tr>";
+      if (istri) html += "<tr><td>Istri" + (istri > EXEMPT ? " — dari " + rupiah(istri - EXEMPT) : " — di bawah Rp500 juta") +
+                         "</td><td>" + rupiah(pIstri) + "</td></tr>";
+      if (pp)    html += "<tr><td>Perseroan perorangan — dari " + rupiah(pp) + "</td><td>" + rupiah(pPP) + "</td></tr>";
+      html += '<tr class="total"><td>Perkiraan total</td><td>' + rupiah(pSuami + pIstri + pPP) + "</td></tr>";
+      html += "</tbody></table></div>";
+    }
+
+    box.innerHTML = html;
+
+    if (LISTINGS.length) {
+      document.getElementById("cta-links").innerHTML = LISTINGS.map(function (l) {
+        return '<a href="' + l.url + '" rel="nofollow">' + l.label + "</a>";
+      }).join(" &middot; ");
+      cta.hidden = false;
+    }
+  }
+
+  var btn = document.getElementById("theme");
+  function gelap() {
+    var set = document.documentElement.getAttribute("data-theme");
+    if (set) return set === "dark";
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  }
+  function labelkan() { btn.textContent = gelap() ? "Tema terang" : "Tema gelap"; }
+  btn.addEventListener("click", function () {
+    document.documentElement.setAttribute("data-theme", gelap() ? "light" : "dark");
+    labelkan();
+  });
+  labelkan();
+})();
+</script>
+</body>
+</html>
