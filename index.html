@@ -244,7 +244,12 @@
 
   // Diisi setelah listing terbit. Kosong = blok ajakan disembunyikan, bukan
   // tautan mati.
-  var LISTINGS = [];
+  var LISTINGS = [
+    {
+      label: "Lihat jasanya di Fastwork",
+      url: "https://fastwork.id/user/emjeee03/data-entry-19280367"
+    }
+  ];
 
   var fmt = new Intl.NumberFormat("id-ID");
   function rupiah(n) { return "Rp" + fmt.format(Math.round(n)); }
