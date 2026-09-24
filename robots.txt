@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://emjeeee.github.io/kalkulator-omzet-suami-istri/sitemap.xml
